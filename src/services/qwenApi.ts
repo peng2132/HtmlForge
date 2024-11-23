@@ -1,4 +1,5 @@
 import { ApiConfig, QwenResponse, StreamChunk } from '../types/api';
+import { useConfigStore } from '../stores/configStore';
 
 export class QwenAPIService {
   constructor(private config: ApiConfig) {}
@@ -9,6 +10,7 @@ export class QwenAPIService {
 
   async *generateHTMLStream(prompt: string): AsyncGenerator<string, void, unknown> {
     try {
+      const configStore = useConfigStore();
       const response = await fetch('https://api.siliconflow.cn/v1/chat/completions', {
         method: 'POST',
         headers: {
@@ -16,7 +18,7 @@ export class QwenAPIService {
           'Authorization': `Bearer ${this.config.apiKey}`
         },
         body: JSON.stringify({
-          model: "Qwen/Qwen2.5-Coder-32B-Instruct",
+          model: configStore.selectedModel.id,
           messages: [
             {
               role: "system",

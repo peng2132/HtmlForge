@@ -58,7 +58,7 @@
             <div class="border-b border-gray-100">
               <div class="flex">
                 <button 
-                  v-for="tab in ['preview', 'code']"
+                  v-for="tab in ['preview', 'code'] as const"
                   :key="tab"
                   @click="activeTab = tab"
                   :class="[
@@ -100,7 +100,9 @@
             <div class="flex items-center gap-8 text-gray-500">
               <a href="#" class="hover:text-gray-900 transition-colors">关于</a>
               <a href="#" class="hover:text-gray-900 transition-colors">文档</a>
-              <a href="#" class="hover:text-gray-900 transition-colors">GitHub</a>
+              <a href="https://github.com/peng2132/HtmlForge" 
+                 target="_blank" 
+                 class="hover:text-gray-900 transition-colors">GitHub</a>
             </div>
             <div class="text-center">
               <p class="text-gray-600">🚀 使用 Vue 3 + TypeScript + Tailwind CSS 构建</p>
